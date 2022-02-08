@@ -1,7 +1,3 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -19,52 +15,76 @@ You may also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## REQUIREMENTS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Use any framework and libraries you like, but we are the most comfortable in React as it is
+what we use at Goodlord. Make sure the project includes some instructions on how to run it as we might not be familiar with the setup.
+If there are any questions, do not hesitate to send the question our way.
+This should take you about an hour of your time, but feel free to spend a bit more or less
+time as you deem necessary.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## EXERCISE
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before tenants can move into a new property we usually need to do a reference check. This
+involves gathering information about their employment, income, credit history, previous
+tenancies, etc and running it through our referencing checks.
+We want you to build a form that captures this information and submits it to our (fictional)
+reference api endpoint: https://ref-api.goodlord.co/reference/new.
 
-### `npm run eject`
+### Part 1
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a form that collects the following information and submits it to the api:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Personal
+  - First name
+  - Last name
+  - Current address
+- Employer
+  - Employer name
+  - Employment start date
+  - Employment end date (no end date if current employment)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Tech Elab
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Set-up project
+- Add any required dependencies to make life easier
+- Create a basic form
+- Add required form areas/fields
+  - Person
+  - Employer
+  - Note: Guarantor section is not in scope of the task
+- Submit form to API with POST request
+- Handle form errors/validation
+- Handle API errors
+- Add unit/integration testings
 
-## Learn More
+Nice to haves
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Styling
+- Linting
+- Typescript
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Notes
 
-### Code Splitting
+- Need to clarify with Product Owner if the 'Guarantor' section needs implementing
+- Using `formik` instead of using `useState` hooks for cleaner code and speed given time constraints.
+- Using `material-ui` for ease of use
+- Can't use requested HTTP 1.1 since browser decides this https://stackoverflow.com/questions/56675358/is-there-a-way-to-force-an-xmlhttprequest-to-use-http-1-1
+- I get 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Would have done with more time
 
-### Analyzing the Bundle Size
+- Proper styling to spec
+- Created a proper date picker for the date
+  - validate the date e.g. startDate not before endDate
+  - send in correct format i.e. map from js Date object to 'yyyymmdd' format
+- Add unit test for the helper function, api, and components
+- Add integration test for the form
+- Not hard-code the url, have env variable instead
+  - help differentiate between production and non-production urls
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Nice to haves
 
-### Making a Progressive Web App
+- Maybe used Formik to map the values to correct form instead of using a mapper util
+- Folder restructuring e.g. sub-folder under Form i.e. `components/Form/components/PersonalFieldset/PersonalFieldset.js`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

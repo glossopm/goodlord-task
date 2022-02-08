@@ -1,0 +1,14 @@
+.Header-logo {
+  height: 40px;
+  pointer-events: none;
+  margin: 0 10px;
+}
+
+.Header-header {
+  background-color: white;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
