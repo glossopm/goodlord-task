@@ -43,12 +43,11 @@ const ReferenceForm = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       const postData = mapToReferenceForm(values);
-      console.log(postData);
 
       try {
         await postReferenceForm(postData);
         alert("Reference form sent successfully ");
-        // formik.resetForm();
+        formik.resetForm();
       } catch (e) {
         alert("Reference form failed to send, please try again");
       }
