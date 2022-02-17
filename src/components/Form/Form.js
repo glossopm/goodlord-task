@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { useFormik } from "formik";
+import { useFormik, FieldArray } from "formik";
 import * as yup from "yup";
 import "./Form.css";
 import FormikTextField from "../FormikTextField/FormikTextField";
@@ -31,14 +31,17 @@ const validationSchema = yup.object({
 });
 
 const ReferenceForm = () => {
+  const defaultEmployer = {
+    name: "",
+    startDate: "",
+    endDate: undefined,
+  }
   const formik = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       address: "",
-      employerName: "",
-      startDate: "",
-      endDate: undefined,
+      employers: [defaultEmployer]
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -54,6 +57,8 @@ const ReferenceForm = () => {
     },
   });
 
+  const hasEnoughemployerDetails = true;
+
   return (
     <div>
       <div className="Form-header">Goodlord Referencing Form</div>
@@ -64,25 +69,40 @@ const ReferenceForm = () => {
           <FormikTextField id="lastName" label="Last name" formik={formik} />
           <FormikTextField id="address" label="Address" formik={formik} />
         </fieldset>
-        <fieldset className="Form-section" name="employer">
-          <legend>Employer</legend>
-          <FormikTextField
-            id="employerName"
-            label="Employer name"
-            formik={formik}
-          />
-          <FormikTextField
-            id="startDate"
-            label="Employment start date"
-            formik={formik}
-          />
-          <FormikTextField
-            id="endDate"
-            label="Employment end date"
-            formik={formik}
-            required={false}
-          />
-        </fieldset>
+        <FieldArray
+          name="employers"
+          render={arrayHelpers => (
+            <div>
+              {(
+                formik.values.employers.map((employer, index) => {
+                  return <div>
+                    <fieldset className="Form-section" name={`employers${index}`}>
+                      <legend>Employer</legend>
+                      <FormikTextField
+                        id={`employers.${index}.name`}
+                        label={`Employer Name ${index}`}
+                        formik={formik}
+                      />
+                      <FormikTextField
+                        id={`employers.${index}.startDate`}
+                        label={`Employer ${index} start date`}
+                        formik={formik}
+                      />
+                      <FormikTextField
+                        id={`employers.${index}.endDate`}
+                        label={`Employer ${index} end date`}
+                        formik={formik}
+                        required={false}
+                      />
+                    </fieldset>
+                  </div>
+                }))}
+              <button type="button" onClick={() => arrayHelpers.push(defaultEmployer)}>
+                Add employer
+              </button>
+            </div>
+          )}
+        />
         <Button
           color="secondary"
           variant="contained"

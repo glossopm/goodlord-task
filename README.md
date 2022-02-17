@@ -88,3 +88,11 @@ Nice to haves
 - Maybe used Formik to map the values to correct form instead of using a mapper util
 - Folder restructuring e.g. sub-folder under Form i.e. `components/Form/components/PersonalFieldset/PersonalFieldset.js`
 
+### Notes
+- First add multiple employers if employment time is at least 3 years of history
+- Calculate total employment time in years
+  - Work out the time employment time per employer
+  - Sum each employment details employment time
+- if employment time is less than 3 years add guarantor section and collect
+- Guarantor section - all fields are required: name, address, relationship
+  - Relationship, enum Sibling, Employer, Other
